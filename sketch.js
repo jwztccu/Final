@@ -36,91 +36,62 @@ shuiMai.addAnimation('normal', 'images/dimsum_shuimai.png');
 shuiMai.addAnimation('hover', 'images/dimsum_shuimai_1.png', 'images/dimsum_shuimai_1.png', 'images/dimsum_shuimai_1.png', 'images/dimsum_shuimai_2.png', 'images/dimsum_shuimai_2.png', 'images/dimsum_shuimai_2.png');
 //end taroPuff//
 
-
 //start taroPuff//
 taroPuff = createSprite(865, 465);
 taroPuff.addAnimation('normal', 'images/dimsum_wugawk_taropuff.png');
 taroPuff.addAnimation('hover', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff.png', 'images/dimsum_wugawk_taropuff_1.png', 'images/dimsum_wugawk_taropuff_1.png', 'images/dimsum_wugawk_taropuff_1.png');
 //end taroPuff//
 
-
-
-
-
-
 //I can assign functions to be called upon specific mouse events
 //within the function "this" will reference the sprite that triggered the event
   //start eggtart//
-eggTart.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-eggTart.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(eggTart, 'images/dimsum_dahntaht_eggtart_pronounciation.m4a');
 //end eggtart//
 //start potsticker//
-potSticker.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-potSticker.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(potSticker, 'images/dimsum_potstickers_pronounciation.m4a');
 //end potsticker//
 //start sesame ball//
-sesameBall.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-sesameBall.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(sesameBall, 'images/dimsum_sesameball_pronounciation.m4a');
 //end sesame ball//
 
-
 //start beefNoodleRoll//
-beefNoodleRoll.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-beefNoodleRoll.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(beefNoodleRoll, 'images/dimsum_gnowcherng_beefnoodleroll_pronounciation.m4a');
 //end beefNoodleRoll//
 
-
-
 //start taroPuff//
-taroPuff.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-taroPuff.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(taroPuff, 'images/dimsum_wugawk_taropuff_pronounciation.m4a');
 //end taroPuff//
 
-
-
 //start shuiMai//
-shuiMai.onMouseOver = function() {
-  this.changeAnimation('hover');
-};
-shuiMai.onMouseOut = function() {
-  this.changeAnimation('normal');
-};
+  addMouseEvents(shuiMai, 'images/dimsum_shuimai_pronounciation.m4a');
 //end shuiMai//
-
-
-  //detect the mouse position and click on this sprite
-  //if no collider is defined, the image bounding box will be checked
-  eggTart.mouseActive = true;
-  potSticker.mouseActive = true;
-  sesameBall.mouseActive = true;
-  beefNoodleRoll.mouseActive = true;
-  taroPuff.mouseActive = true;
-  shuiMai.mouseActive = true;
 }
 
 function draw() {
   background(1000,800,400);
   drawSprites();
+}
+
+function addMouseEvents(dimSum, audioFile) {
+  dimSum.onMouseOver = function() {
+    this.changeAnimation('hover');
+  };
+  dimSum.onMouseOut = function() {
+    this.changeAnimation('normal');
+  };
+  dimSum.onMouseReleased = function() {
+    playAudio(audioFile);
+  };
+
+  //detect the mouse position and click on this sprite
+  //if no collider is defined, the image bounding box will be checked
+  dimSum.mouseActive = true;
+}
+
+function playAudio(audioFile) {
+  var audio = document.getElementById('audio');
+  audio.src = audioFile;
+  audio.play();
 }
 
 //START//
